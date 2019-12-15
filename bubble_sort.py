@@ -3,11 +3,15 @@ def bubble_sort(array) :
     array_length = len(array)
 
     for i in range(len(array)) :
+        print("i == {}".format(i))
         for j in range(i) :
+            print("j == {}".format(j))
+
             smaller = array[i]
-            if (array[i] < array[j]) :
+            if (array[j] > array[i]) :
                 array[i] = array[j]
                 array[j] = smaller
+        print("--------------------")
             
     return array
 
