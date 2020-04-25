@@ -1,32 +1,32 @@
-def three_sum(args):
-    args.sort()
+def three_sum(nums):
+    nums.sort()
+
     combinations = []
+    touched = {}
 
-    print(args)
-
-    for count, c in enumerate(args):
+    for count, c in enumerate(nums):
         state = {}
-        # c *= -1
+        c *= -1
 
-        print("\n")
+        if c in touched:
+            continue
 
-        for b in args[count + 1 :]:
-            # print("|---------------------------|")
-            # print("looking for {}".format(c))
-            # print("we have b as {}".format(b))
-            a = (c + b) * (-1)
-            # print("we have a as {}".format(a))
-            # print("|---------------------------|")
+        for b in nums[count + 1 :]:
 
-            # print(a, b, c)
+            a = c - b
 
-            if b not in state:
-                state[a] = [b, c]
-            else:
-                combinations.append([a, b, c])
-                break
+            stringifiedValue = "{}{}{}".format(a, -c, b)
+
+            if a not in state:
+                state[b] = [a, -c]
+            elif stringifiedValue not in touched:
+                combinations.append([a, -c, b])
+                touched[stringifiedValue] = True
+
+        touched[c] = True
 
     return combinations
 
 
 print(three_sum([-1, 0, 1, 2, -1, -4]))
+print(three_sum([0, 0, 0, 0, 0, 0]))
